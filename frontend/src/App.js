@@ -1,7 +1,15 @@
+import { Layout } from 'antd';
+import { Header } from './Components/Header';
+import { Content } from './Components/Content';
+import { Footer } from './Components/Footer';
 import './App.css';
 
 export const App = () => {
-  return <div className='App'>
-    <h1>Hello</h1>
-  </div>;
+  return (
+    <Layout>
+      <Header />
+      <Content />
+      <Footer />
+    </Layout>
+  );
 };
