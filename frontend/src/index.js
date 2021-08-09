@@ -1,8 +1,8 @@
 import './index.css';
-import App from './App';
+import { App } from './App';
 import React from 'react';
 import thunk from 'redux-thunk';
-import { Provider } from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { rootReducer } from './Reducers';
 import { compose, createStore, applyMiddleware } from 'redux';

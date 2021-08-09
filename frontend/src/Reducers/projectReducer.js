@@ -6,8 +6,8 @@ const initialState = {
 
 export default function projectsReducer(state = initialState, action) {
   switch (action.type) {
-    case '':
-      return '';
+    case 'XYZ':
+      return 'XYZ';
     default:
       return state;
   }
