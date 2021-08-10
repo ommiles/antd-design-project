@@ -14,21 +14,25 @@ import Question from '../../Assets/Question.svg';
 import {
   fetchProjects,
   sortProjects,
-  editProjects,
+  addProject,
+  editProject,
   deleteProject,
 } from '../../Actions/projectActions';
 
 export const TableContainer = () => {
+  const data = useSelector(state => state.projects.projects);
+
   useEffect(() => {
     dispatch(fetchProjects());
   }, []);
 
+  useEffect(() => {
+    console.log('2nd useEffect firing');
+  }, [data]);
+
   const dispatch = useDispatch();
-  const data = useSelector(state => state.projects.projects);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [itemSelected, setItemSelected] = useState(null);
-  const [dataSource, setDataSource] = useState(data);
-  const [count, setCount] = useState(data.length);
 
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
@@ -205,14 +209,7 @@ export const TableContainer = () => {
   };
 
   const handleAdd = () => {
-    const newData = {
-      key: count.to_s,
-      name: '',
-      date: new Date(),
-      index: count,
-    };
-    setDataSource([...dataSource, newData]);
-    setCount(count + 1);
+    dispatch(addProject());
   };
 
   const handleEdit = record => {
@@ -232,7 +229,7 @@ export const TableContainer = () => {
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
-        dispatch(editProjects(id, row.project_name));
+        dispatch(editProject(id, row.project_name));
         setEditingKey('');
       } else {
         newData.push(row);

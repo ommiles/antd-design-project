@@ -9,10 +9,10 @@ class Api::V1::ProjectsController < ApplicationController
     def create
         project = Project.new(project_params)
         if project.save
-            render json: project, status: created
+            render json: project, status: :created
         else
             # render json: {error: @project.errors}, status: unprocessable_entity
-            render json: {error: project.errors}, status: unprocessable_entity
+            render json: {error: project.errors}, status: :unprocessable_entity
         end
     end
 
@@ -24,7 +24,7 @@ class Api::V1::ProjectsController < ApplicationController
         if @project.update(edit_params)
             render json: @project
         else
-            render json: {error: @project.errors}, status: unprocessable_entity
+            render json: {error: @project.errors}, status: :unprocessable_entity
         end
     end
 

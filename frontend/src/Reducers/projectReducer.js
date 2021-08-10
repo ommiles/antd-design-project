@@ -22,6 +22,11 @@ export default function projectsReducer(state = initialState, action) {
         ...state,
         projects: action.newData,
       };
+      case 'ADD_PROJECT':
+        return {
+          ...state,
+          projects: [...state.projects, action.project],
+        }
     case 'EDIT_PROJECTS':
       if (state.projects.findIndex) {
         let index = state.projects.findIndex(
