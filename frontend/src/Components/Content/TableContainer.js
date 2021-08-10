@@ -110,11 +110,12 @@ export const TableContainer = () => {
       width: '10%',
       render: (_, record) => {
         const editable = isEditing(record);
+        console.log(editable)
         return editable ? (
           <span>
             <Typography.Link
               // href='javascript:;'
-              onClick={record => handleSave(record.id)}
+              onClick={() => handleSave(record.id)}
               style={{
                 marginRight: 8,
               }}
@@ -222,7 +223,8 @@ export const TableContainer = () => {
     setEditingKey(record.id);
   };
 
-  const handleSave = async key => {
+  const handleSave = async id => {
+    console.log(id)
     try {
       const row = await form.validateFields();
       const newData = [...dataSource];
