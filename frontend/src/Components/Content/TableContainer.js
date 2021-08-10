@@ -11,7 +11,7 @@ import arrayMove from 'array-move';
 import defaultProjectIcon_2x from '../../Assets/defaultProjectIcon_2x.png';
 import PlusSign from '../../Assets/Plus Sign.svg';
 import Question from '../../Assets/Question.svg';
-import { fetchProjects, sortProjects } from '../../Actions/projectActions';
+import { fetchProjects, sortProjects, editProjects } from '../../Actions/projectActions';
 
 export const TableContainer = () => {
   useEffect(() => {
@@ -227,17 +227,22 @@ export const TableContainer = () => {
     console.log(id)
     try {
       const row = await form.validateFields();
-      const newData = [...dataSource];
-      const index = newData.findIndex(item => editingKey === item.key);
+      const newData = [...data];
+      const index = newData.findIndex(item => editingKey === item.id);
 
+      console.log(row) // {project_name: ''}
+      console.log(row.project_name) // ''
+      console.log(newData) // copy of data array
+      console.log(index) // index of item in new copied array
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
-        setDataSource(newData);
+        dispatch(editProjects(id, row.project_name))
+        // setDataSource(newData);
         setEditingKey('');
       } else {
         newData.push(row);
-        setDataSource(newData);
+        // setDataSource(newData);
         setEditingKey('');
       }
     } catch (errInfo) {

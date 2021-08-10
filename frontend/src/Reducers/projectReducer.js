@@ -22,6 +22,23 @@ export default function projectsReducer(state = initialState, action) {
         ...state,
         projects: action.newData,
       };
+    case 'EDIT_PROJECTS':
+      if (state.projects.findIndex) {
+        let index = state.projects.findIndex(
+          (project) => project.id === action.project.id
+        );
+        return {
+          projects: [
+            ...state.projects.slice(0, index),
+            action.project,
+            ...state.projects.slice(index + 1),
+          ],
+          loading: false,
+          error: false,
+        };
+      } else {
+        return { ...state, loading: false, error: false };
+      }
     default:
       return state;
   }
