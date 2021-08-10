@@ -7,3 +7,9 @@ export const fetchProjects = () => {
       .catch(console.log);
   };
 };
+
+export const sortProjects = newData => {
+  return dispatch => {
+    dispatch({ type: 'SORT_PROJECTS', newData });
+  };
+};

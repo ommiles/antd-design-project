@@ -17,6 +17,11 @@ export default function projectsReducer(state = initialState, action) {
         loading: false,
         errors: false,
       };
+    case 'SORT_PROJECTS':
+      return {
+        ...state,
+        projects: action.newData,
+      };
     default:
       return state;
   }

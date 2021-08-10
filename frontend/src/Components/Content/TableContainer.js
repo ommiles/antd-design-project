@@ -11,12 +11,11 @@ import arrayMove from 'array-move';
 import defaultProjectIcon_2x from '../../Assets/defaultProjectIcon_2x.png';
 import PlusSign from '../../Assets/Plus Sign.svg';
 import Question from '../../Assets/Question.svg';
-import { fetchProjects } from '../../Actions/projectActions';
+import { fetchProjects, sortProjects } from '../../Actions/projectActions';
 
 export const TableContainer = () => {
   useEffect(() => {
     dispatch(fetchProjects());
-    console.log(data);
   }, []);
 
   const dispatch = useDispatch();
@@ -28,7 +27,7 @@ export const TableContainer = () => {
 
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const isEditing = record => record.key === editingKey;
+  const isEditing = record => record.id === editingKey;
 
   const DragHandle = sortableHandle(() => (
     <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />
@@ -115,7 +114,7 @@ export const TableContainer = () => {
           <span>
             <Typography.Link
               // href='javascript:;'
-              onClick={record => handleSave(record.key)}
+              onClick={record => handleSave(record.id)}
               style={{
                 marginRight: 8,
               }}
@@ -180,13 +179,11 @@ export const TableContainer = () => {
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     if (oldIndex !== newIndex) {
-      const newData = arrayMove(
-        [].concat(dataSource),
-        oldIndex,
-        newIndex
-      ).filter(el => !!el);
+      const newData = arrayMove([].concat(data), oldIndex, newIndex).filter(
+        el => !!el
+      );
       console.log('Sorted items: ', newData);
-      setDataSource(newData);
+      dispatch(sortProjects(newData));
     }
   };
 
@@ -201,10 +198,8 @@ export const TableContainer = () => {
   );
 
   const DraggableBodyRow = ({ className, style, ...restProps }) => {
-    // function findIndex base on Table rowKey props and should always be a right array index
-    const index = dataSource.findIndex(
-      x => x.index === restProps['data-row-key']
-    );
+    // function findIndex is based on Table rowKey props and should always be a right array index
+    const index = data.findIndex(x => x.id === restProps['data-row-key']);
     return <SortableItem index={index} {...restProps} />;
   };
 
@@ -224,7 +219,7 @@ export const TableContainer = () => {
       name: '',
       ...record,
     });
-    setEditingKey(record.key);
+    setEditingKey(record.id);
   };
 
   const handleSave = async key => {
@@ -332,9 +327,8 @@ export const TableContainer = () => {
         <Table
           pagination={false}
           dataSource={data}
-          // columns={columns}
           columns={mergedColumns}
-          rowKey='index'
+          rowKey='id'
           rowClassName='editable-row'
           components={{
             body: {
