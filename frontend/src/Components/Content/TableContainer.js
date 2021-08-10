@@ -11,7 +11,12 @@ import arrayMove from 'array-move';
 import defaultProjectIcon_2x from '../../Assets/defaultProjectIcon_2x.png';
 import PlusSign from '../../Assets/Plus Sign.svg';
 import Question from '../../Assets/Question.svg';
-import { fetchProjects, sortProjects, editProjects } from '../../Actions/projectActions';
+import {
+  fetchProjects,
+  sortProjects,
+  editProjects,
+  deleteProject,
+} from '../../Actions/projectActions';
 
 export const TableContainer = () => {
   useEffect(() => {
@@ -110,7 +115,6 @@ export const TableContainer = () => {
       width: '10%',
       render: (_, record) => {
         const editable = isEditing(record);
-        console.log(editable)
         return editable ? (
           <span>
             <Typography.Link
@@ -127,9 +131,6 @@ export const TableContainer = () => {
             </Popconfirm>
           </span>
         ) : (
-          // <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-          //   Edit
-          // </Typography.Link>
           <span
             role='img'
             aria-label='menu'
@@ -139,7 +140,6 @@ export const TableContainer = () => {
             <div
               className='edit-icon'
               style={{ height: '1.5em', width: '1.5em' }}
-              // onClick={handleEdit}
               onClick={() => handleEdit(record)}
             ></div>
           </span>
@@ -224,25 +224,18 @@ export const TableContainer = () => {
   };
 
   const handleSave = async id => {
-    console.log(id)
     try {
       const row = await form.validateFields();
       const newData = [...data];
       const index = newData.findIndex(item => editingKey === item.id);
 
-      console.log(row) // {project_name: ''}
-      console.log(row.project_name) // ''
-      console.log(newData) // copy of data array
-      console.log(index) // index of item in new copied array
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
-        dispatch(editProjects(id, row.project_name))
-        // setDataSource(newData);
+        dispatch(editProjects(id, row.project_name));
         setEditingKey('');
       } else {
         newData.push(row);
-        // setDataSource(newData);
         setEditingKey('');
       }
     } catch (errInfo) {
@@ -256,11 +249,11 @@ export const TableContainer = () => {
 
   const handleDelete = record => {
     setModalVisibility(true);
-    setItemSelected(record.key);
+    setItemSelected(record.id);
   };
 
   const modalOnOk = () => {
-    setDataSource(dataSource.filter(item => item.key !== itemSelected));
+    dispatch(deleteProject(itemSelected));
     setModalVisibility(false);
   };
 

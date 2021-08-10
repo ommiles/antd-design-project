@@ -27,6 +27,20 @@ export const editProjects = (id, project_name) => {
       }),
     })
       .then(resp => resp.json())
-      .then(project => dispatch({type: 'EDIT_PROJECTS', project}));
+      .then(project => dispatch({ type: 'EDIT_PROJECTS', project }));
+  };
+};
+
+export const deleteProject = id => {
+  return dispatch => {
+    fetch(`http://127.0.0.1:3000/api/v1/projects/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then(resp => resp.json())
+      .then(project => dispatch({ type: 'DELETE_PROJECT', project }));
   };
 };

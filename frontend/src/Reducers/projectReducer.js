@@ -39,6 +39,11 @@ export default function projectsReducer(state = initialState, action) {
       } else {
         return { ...state, loading: false, error: false };
       }
+      case 'DELETE_PROJECT':
+        return {
+          ...state,
+          projects: state.projects.filter(item => item.id !== action.project.id),
+        }
     default:
       return state;
   }
