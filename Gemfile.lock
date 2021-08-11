@@ -68,6 +68,7 @@ GEM
     crass (1.0.6)
     erubi (1.10.0)
     ffi (1.15.3)
+    foreman (0.87.2)
     globalid (0.5.2)
       activesupport (>= 5.0)
     i18n (1.8.10)
@@ -149,6 +150,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
+  foreman
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
