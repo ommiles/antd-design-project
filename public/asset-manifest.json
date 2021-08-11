@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.58f1ee3a.chunk.css",
+    "main.js": "/static/js/main.89b2e447.chunk.js",
+    "main.js.map": "/static/js/main.89b2e447.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.900dd88b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.900dd88b.js.map",
+    "static/css/2.0e871ea0.chunk.css": "/static/css/2.0e871ea0.chunk.css",
+    "static/js/2.18180ba6.chunk.js": "/static/js/2.18180ba6.chunk.js",
+    "static/js/2.18180ba6.chunk.js.map": "/static/js/2.18180ba6.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.0e871ea0.chunk.css.map": "/static/css/2.0e871ea0.chunk.css.map",
+    "static/css/main.58f1ee3a.chunk.css.map": "/static/css/main.58f1ee3a.chunk.css.map",
+    "static/js/2.18180ba6.chunk.js.LICENSE.txt": "/static/js/2.18180ba6.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/EditIcon_Hover.1b15c462.svg",
+    "static/media/Plus Sign.a368120b.svg": "/static/media/Plus Sign.a368120b.svg",
+    "static/media/Question.544e2b3c.svg": "/static/media/Question.544e2b3c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.900dd88b.js",
+    "static/css/2.0e871ea0.chunk.css",
+    "static/js/2.18180ba6.chunk.js",
+    "static/css/main.58f1ee3a.chunk.css",
+    "static/js/main.89b2e447.chunk.js"
+  ]
+}
