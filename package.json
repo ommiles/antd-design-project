@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm install && npm run build & cd ..",
     "deploy": "cp -a front-end-app/build/. public/",
-    "postinstall": "npm run build && npm run deploy && echo 'Build complete.'",
+    "postinstall": "npm run build && npm run deploy && echo 'Build complete.'"
   },
   "repository": {
     "type": "git",
