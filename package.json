@@ -1,6 +1,9 @@
 {
   "name": "antd-design-project",
   "version": "1.0.0",
+  "engines": {
+    "node": "7.20.3"
+  },
   "description": "",
   "main": "index.js",
   "directories": {
