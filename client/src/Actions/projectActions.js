@@ -1,7 +1,7 @@
 export const fetchProjects = () => {
   return dispatch => {
     dispatch({ type: 'FETCH_PROJECTS_REQUEST' });
-    fetch('http://127.0.0.1:3000/api/v1/projects')
+    fetch('/api/v1/projects')
       .then(res => res.json())
       .then(projects => dispatch({ type: 'FETCH_PROJECTS_SUCCESS', projects }))
       .catch(console.log);
@@ -16,7 +16,7 @@ export const sortProjects = newData => {
 
 export const addProject = () => {
   return dispatch => {
-    fetch('http://localhost:3000/api/v1/projects', {
+    fetch('/api/v1/projects', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export const addProject = () => {
 
 export const editProject = (id, project_name) => {
   return dispatch => {
-    fetch(`http://127.0.0.1:3000/api/v1/projects/${id}`, {
+    fetch(`/api/v1/projects/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export const editProject = (id, project_name) => {
 
 export const deleteProject = id => {
   return dispatch => {
-    fetch(`http://127.0.0.1:3000/api/v1/projects/${id}`, {
+    fetch(`/api/v1/projects/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
